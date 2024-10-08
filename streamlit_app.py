@@ -61,7 +61,7 @@ def main():
         sample_patient_features_reshaped = np.array(sample_patient_features).reshape(1, -1)
 
         # Make a prediction and display the result
-        prediction = predict_heart_disease(sample_patient_features_reshaped[0])
+        prediction = predict_heart_disease(sample_patient_features_reshaped)
         # Output the prediction result
         if prediction == 1:
             st.write("The patient is predicted to have heart disease.")
