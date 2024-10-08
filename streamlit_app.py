@@ -14,7 +14,6 @@ def predict_heart_disease(sample_patient_features):
     sample_patient_features_reshaped = np.array(sample_patient_features).reshape(1, -1)
 
     # Make a prediction
-    prediction = loaded_model.predict(input_df)
     prediction = predict_heart_disease(sample_patient_features_reshaped[0])
     return prediction[0]
 
