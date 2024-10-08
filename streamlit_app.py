@@ -11,9 +11,11 @@ def predict_heart_disease(sample_patient_features):
 
     # Convert the sample to a DataFrame or appropriate input format
     input_df = pd.DataFrame([sample_patient_features])
+    sample_patient_features_reshaped = np.array(sample_patient_features).reshape(1, -1)
 
     # Make a prediction
     prediction = loaded_model.predict(input_df)
+    prediction = predict_heart_disease(sample_patient_features_reshaped[0])
     return prediction[0]
 
 
@@ -61,7 +63,7 @@ def main():
         sample_patient_features_reshaped = np.array(sample_patient_features).reshape(1, -1)
 
         # Make a prediction and display the result
-        prediction = predict_heart_disease(sample_patient_features_reshaped)
+        prediction = predict_heart_disease(sample_patient_features_reshaped[0])
         # Output the prediction result
         if prediction == 1:
             st.write("The patient is predicted to have heart disease.")
