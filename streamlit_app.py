@@ -34,7 +34,7 @@ def predict_heart_disease(sample_patient_features):
 
     # Make a prediction
     prediction = loaded_model.predict(input_df)
-    return prediction[0]
+    return prediction
 
 
 def main():
@@ -83,7 +83,7 @@ def main():
         # Make a prediction and display the result
         prediction = predict_heart_disease(sample_patient_features_reshaped)
         # Output the prediction result
-        if prediction == 1:
+        if prediction[0] == 1:
             st.write("The patient is predicted to have heart disease.")
         else:
             st.write("The patient is not predicted to have heart disease.")
