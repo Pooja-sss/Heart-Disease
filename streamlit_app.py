@@ -19,7 +19,24 @@ except Exception as e:
 # Function to predict heart disease
 def predict_heart_disease(sample_patient_features):
     try:
-        input_df = pd.DataFrame([sample_patient_features], columns=['age', 'sex', 'cholesterol', 'blood_pressure','trestbps','fbs','thalach','exang','oldpeak','slope','ca','cp_1','cp_2','cp_3','restecg_1','restecg_2','thal_1','thal_2','thal_3'])  # Add all feature names
+        input_df = pd.DataFrame([sample_patient_features], columns=[ 63,    # age
+    1,     # sex (1 = male; 0 = female)
+    145,   # trestbps
+    233,   # chol
+    1,     # fbs (1 = true; 0 = false)
+    150,   # thalach
+    0,     # exang (1 = yes; 0 = no)
+    2.3,   # oldpeak
+    0,     # slope (0 = upsloping; 1 = flat; 2 = downsloping)
+    0,     # ca (number of major vessels)
+    0,     # cp_1 (chest pain type 1)
+    0,     # cp_2 (chest pain type 2)
+    1,     # cp_3 (chest pain type 3)
+    0,     # restecg_1
+    0,     # restecg_2
+    1,     # thal_1
+    0,     # thal_2
+    0      # thal_3])  # Add all feature names
         st.write("Input features shape:", input_df.shape)  # Log input shape for debugging
 
         # Make the prediction if model is not a list
