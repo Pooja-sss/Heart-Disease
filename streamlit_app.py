@@ -15,6 +15,7 @@ try:
 except Exception as e:
     st.error(f"Error loading model: {e}")
 
+
 # Function to predict heart disease
 def predict_heart_disease(sample_patient_features):
     try:
