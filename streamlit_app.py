@@ -36,8 +36,8 @@ def predict_heart_disease(sample_patient_features):
     0,     # restecg_2
     1,     # thal_1
     0,     # thal_2
-    0      # thal_3])  # Add all feature names
-        st.write("Input features shape:", input_df.shape)  # Log input shape for debugging
+    0      # thal_3])  
+        st.write("Sample patient features shape:", input_df.shape)  # Log input shape for debugging
 
         # Make the prediction if model is not a list
         prediction = loaded_model.predict(input_df)
