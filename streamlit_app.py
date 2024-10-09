@@ -4,37 +4,32 @@ import pandas as pd
 import numpy as np
 import pickle  # To load the trained m
 
-# Load the trained KNN model (make sure to adjust the file path as necessary)
-loaded_model = pickle.load(open('heart_disease_model.pkl', 'rb'))
+# Load the trained model
+try:
+    with open('heart_disease_model.pkl', 'rb') as file:
+        loaded_model = pickle.load(file)
+        # Check if the loaded model is a list or an actual model
+        if isinstance(loaded_model, list):
+            st.error("Error: Loaded object is a list. Please load the correct model.")
+        else:
+            st.success("Model loaded successfully.")
+except Exception as e:
+    st.error(f"Error loading model: {e}")
 
+# Function to predict heart disease
 def predict_heart_disease(sample_patient_features):
-    sample_patient_features = [
-    63,    # age
-    1,     # sex (1 = male; 0 = female)
-    145,   # trestbps
-    233,   # chol
-    1,     # fbs (1 = true; 0 = false)
-    150,   # thalach
-    0,     # exang (1 = yes; 0 = no)
-    2.3,   # oldpeak
-    0,     # slope (0 = upsloping; 1 = flat; 2 = downsloping)
-    0,     # ca (number of major vessels)
-    0,     # cp_1 (chest pain type 1)
-    0,     # cp_2 (chest pain type 2)
-    1,     # cp_3 (chest pain type 3)
-    0,     # restecg_1
-    0,     # restecg_2
-    1,     # thal_1
-    0,     # thal_2
-    0      # thal_3
-]
+    try:
+        input_df = pd.DataFrame([sample_patient_features], columns=['age', 'sex', 'cholesterol', 'blood_pressure','trestbps','fbs','thalach','exang','oldpeak','slope','ca','cp_1','cp_2','cp_3','restecg_1','restecg_2','thal_1','thal_2','thal_3'])  # Add all feature names
+        st.write("Input features shape:", input_df.shape)  # Log input shape for debugging
 
-    # Convert the sample to a DataFrame or appropriate input format
-    input_df = pd.DataFrame([sample_patient_features])
+        # Make the prediction if model is not a list
+        prediction = loaded_model.predict(input_df)
+        return prediction
+    except AttributeError as ae:
+        st.error(f"Prediction failed: {ae}")
+    except Exception as e:
+        st.error(f"An error occurred during prediction: {e}")
 
-    # Make a prediction
-    prediction = loaded_model.predict(input_df)
-    return prediction
 
 
 def main():
@@ -78,15 +73,17 @@ def main():
             exang, oldpeak, slope, ca, cp_1, cp_2,
             cp_3, restecg_1, restecg_2, thal_1, thal_2, thal_3
         ]
-        sample_patient_features_reshaped = np.array(sample_patient_features).reshape(1, -1)
-
-        # Make a prediction and display the result
-        prediction = predict_heart_disease(sample_patient_features_reshaped)
-        # Output the prediction result
-        if prediction[0] == 1:
-            st.write("The patient is predicted to have heart disease.")
-        else:
-            st.write("The patient is not predicted to have heart disease.")
+         # Reshape the input for prediction
+    if st.button("Predict"):
+        try:
+            prediction = predict_heart_disease(sample_patient_features)
+            if prediction is not None:
+                if prediction[0] == 1:
+                    st.success("The patient is predicted to have heart disease.")
+                else:
+                    st.success("The patient is not predicted to have heart disease.")
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")
 
 
 if __name__ == '__main__':
