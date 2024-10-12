@@ -5,7 +5,7 @@ import pickle
 
 # Load the trained model
 try:
-    with open('/kaggle/working/heart_disease_model.pkl', 'rb') as file:
+    with open('heart_disease_model.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
         if isinstance(loaded_model, list):
             st.error("Error: Loaded object is a list. Please load the correct model.")
