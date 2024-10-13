@@ -4,7 +4,7 @@ import pandas as pd
 
 # Load your model
 try:
-    with open('heart_disease_model.pkl', 'rb') as file:
+    with open('heart_disease_model.joblib', 'rb') as file:
         model = joblib.load(file)
 except Exception as e:
     st.error(f"Error loading model: {e}")
