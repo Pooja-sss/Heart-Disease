@@ -13,13 +13,10 @@ except Exception as e:
 
 # Define a function to make predictions
 def predict_heart_disease(sample_patient_features):
-    try:
+
         input_df = pd.DataFrame([sample_patient_features])
         prediction = loaded_model.predict(input_df)
         return prediction[0]
-    except Exception as e:
-        st.error(f"Prediction failed: {e}")
-
 
 # Streamlit UI components
 st.title("Heart Disease Prediction App")
