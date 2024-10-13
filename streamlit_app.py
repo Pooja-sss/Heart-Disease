@@ -5,7 +5,7 @@ import pandas as pd
 # Load your model
 try:
     with open('heart_disease_model.pkl', 'rb') as file:
-        loaded_model = pickle.load(file)
+        model = pickle.load(file)
 except Exception as e:
     st.error(f"Error loading model: {e}")
 
@@ -13,7 +13,7 @@ except Exception as e:
 def predict_heart_disease(sample_patient_features):
     try:
         input_df = pd.DataFrame([sample_patient_features])
-        prediction = loaded_model.predict(input_df)
+        prediction = model.predict(input_df)
         return prediction[0]
     except Exception as e:
         st.error(f"Prediction failed: {e}")
