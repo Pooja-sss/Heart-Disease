@@ -38,8 +38,8 @@ thal = st.number_input("Thalassemia (0-3)", min_value=0, max_value=3)
 
 # Button to make prediction
 if st.button("Predict"):
-    features = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
-    result = predict_heart_disease(features)
+    sample_patient_features = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
+    result = predict_heart_disease(sample_patient_features)
     if result == 1:
         st.success("The patient is predicted to have heart disease.")
     else:
