@@ -12,9 +12,9 @@ except Exception as e:
 
 
 # Define a function to make predictions
-def predict_heart_disease(sample_patient_features):
+def predict_heart_disease(sample_features):
     try:
-        input_df = pd.DataFrame([sample_patient_features], columns=[
+        input_df = pd.DataFrame([sample_features], columns=[
             'age', 'sex', 'cp', 'trestbps', 'chol',
             'fbs', 'restecg', 'thalach', 'exang',
             'oldpeak', 'slope', 'ca', 'thal'
@@ -45,8 +45,8 @@ thal = st.number_input("Thalassemia (0-3)", min_value=0, max_value=3)
 
 # Button to make prediction
 if st.button("Predict"):
-    sample_patient_features = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
-    result = predict_heart_disease(sample_patient_features)
+    sample_features = [age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]
+    result = predict_heart_disease(sample_features)
 
     # Show the prediction result
     if result == 1:
