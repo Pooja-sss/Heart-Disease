@@ -1,6 +1,0 @@
-streamlit==1.12.0
-pandas
-scikit-learn==1.2.2
-matplotlib
-matplotlib-inline
-
